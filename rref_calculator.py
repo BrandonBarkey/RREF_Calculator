@@ -21,11 +21,7 @@ def addRows(matrix, row1, row2, const1, const2):
         matrix[row2][num] += matrix[row1][num]
 
     # Reset row 1
-    count = 0
-    for number in matrix[row1]:
-        number /= const1
-        matrix[row1][count] = number
-        count += 1
+    multiplyRow(matrix, row1, 1/const1)
 
     return row2
 
@@ -66,7 +62,7 @@ for col in range(0, len(matrix[0])):
             for check_row in range(0, len(matrix)):
                 if check_row != row:
                     if matrix[check_row][col] > 0:
-                        addRows(matrix, row, check_row, 1, -1 / matrix[row][col])
+                        addRows(matrix, row, check_row, -1, 1 / matrix[row][col])
                     else:
                         addRows(matrix, row, check_row, 1, 1 / matrix[row][col])
                     print(f"Set row {check_row} to zero")
